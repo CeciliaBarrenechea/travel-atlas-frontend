@@ -1,0 +1,114 @@
+.country-card {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  border-radius: 18px;
+  background-color: #d9d9d9;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  animation: country-card-appear 0.45s ease both;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.country-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.2);
+}
+
+.country-card__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.country-card:hover .country-card__image {
+  transform: scale(1.04);
+}
+
+.country-card__content {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.country-card__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.country-card__name {
+  margin: 0 0 4px;
+  color: #111827;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.country-card__region {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.country-card__flag {
+  width: 38px;
+  height: 26px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px rgba(15, 23, 42, 0.22);
+}
+
+.country-card__capital {
+  margin: 14px 0 6px;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.country-card__label {
+  font-weight: 700;
+}
+
+.country-card__population {
+  margin: 0;
+  color: #111827;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+@keyframes country-card-appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .country-card {
+    height: 330px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .country-card,
+  .country-card__image {
+    animation: none;
+    transition: none;
+  }
+}

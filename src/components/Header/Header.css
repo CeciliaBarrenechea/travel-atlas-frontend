@@ -1,0 +1,158 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
+  background-color: black;
+}
+
+.header__container {
+  max-width: 1280px;
+  height: 80px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header__logo-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.header__logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-left: auto;
+}
+
+.header__link {
+  position: relative;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header__link_active {
+  font-weight: 700;
+}
+
+.header__link:hover {
+  color: var(--color-primary);
+}
+
+.header__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.header__link:hover::after,
+.header__link_active::after {
+  width: 100%;
+}
+
+.header__menu-button {
+  display: none;
+  position: relative;
+  z-index: 101;
+  margin-left: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .header__container {
+    padding: 0 20px;
+  }
+
+  .header__nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    z-index: 100;
+
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+
+    padding: 8px 20px 20px;
+    background-color: black;
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  .header__nav_open {
+    display: flex;
+  }
+
+  .header__nav_open .header__link {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .header__nav_open .header__link::after {
+    display: none;
+  }
+
+  .header__menu-button {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header__container {
+    height: 70px;
+    padding: 0 16px;
+  }
+
+  .header__nav {
+    top: 70px;
+  }
+
+  .header__logo-text {
+    font-size: 1.25rem;
+  }
+
+  .header__logo-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .header__menu-button {
+    font-size: 1.8rem;
+  }
+}

@@ -1,0 +1,26 @@
+@import url("./vendor/normalize.css");
+@import url("./vendor/fonts/fonts.css");
+
+@import url("./styles/global.css");
+@import url("./styles/variables.css");
+@import url("./components/Header/Header.css");
+@import url("./components/Hero/Hero.css");
+@import url("./components/CountryCard/CountryCard.css");
+@import url("./components/CountryGrid/CountryGrid.css");
+@import url("./components/SearchForm/SearchForm.css");
+@import url("./components/Footer/Footer.css");
+
+
+
+.explore {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.explore__no-results {
+  margin: 0;
+  padding: 60px 20px 80px;
+  color: #64748b;
+  font-size: 1.2rem;
+  text-align: center;
+}
