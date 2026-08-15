@@ -1,16 +1,37 @@
-# React + Vite
+Proyecto elaborado por Cecilia Barrenechea 2026
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Travel Atlas es una aplicación web para explorar países del mundo: información general, banderas, monedas, idiomas y más, consumiendo datos en tiempo real desde una API pública.
 
-Currently, two official plugins are available:
+Funcionalidades principales:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Búsqueda de países
+Exploración de la lista de países disponibles
+Visualización de detalle por país (bandera, moneda, idiomas, capital, entre otra información)
 
-## React Compiler
+Tecnologías utilizadas
+React 19
+Vite como bundler y servidor de desarrollo
+React Router para el enrutamiento entre páginas
+ESLint para linting
+countries.dev API — API pública y gratuita de datos de países (sin necesidad de API key)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Despliegue:
 
-## Expanding the ESLint configuration
+Servidor propio en Google Cloud
+PM2 como gestor de procesos
+FreeDNS para el dominio
+![alt text](image.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+Sitio en vivo: travelatlas.ignorelist.com / www.travelatlas.ignorelist.com
+
+Estructura del proyecto
+src/
+├── components/     # Componentes reutilizables (Header, Footer, CountryCard, CountryGrid, SearchForm, Popup, Loader, Hero)
+├── pages/          # Páginas de la app (Home, Explore)
+├── utils/          # Funciones utilitarias
+├── styles/         # Estilos globales
+├── assets/         # Imágenes e íconos
+└── vendor/         # Fuentes tipográficas
