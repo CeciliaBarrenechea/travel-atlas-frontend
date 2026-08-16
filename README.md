@@ -25,7 +25,9 @@ FreeDNS para el dominio
 ![alt text](image-3.png)
 
 
-Sitio en vivo: travelatlas.ignorelist.com / www.travelatlas.ignorelist.com
+Sitio en vivo: 
+[travelatlas.ignorelist.com](https://travelatlas.ignorelist.com)  
+[www.travelatlas.ignorelist.com](https://www.travelatlas.ignorelist.com)
 
 Estructura del proyecto
 src/
