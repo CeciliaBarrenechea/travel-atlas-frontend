@@ -10,29 +10,12 @@
   padding: 24px 32px;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 24px;
 }
 
 .footer__copyright {
   margin: 0;
   color: #6b7280;
   font-size: 0.9rem;
-}
-
-.footer__links {
-  display: flex;
-  gap: 24px;
-}
-
-.footer__link {
-  text-decoration: none;
-  color: #374151;
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
-}
-
-.footer__link:hover {
-  color: #2563eb;
 }
