@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logoIcon from "../../assets/icons/avion.png";
 import "./Header.css";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
 
   const getLinkClassName = ({ isActive }) =>
     isActive
@@ -16,14 +15,7 @@ function Header() {
 
   const toggleMenu = () => setIsMenuOpen((isOpen) => !isOpen);
 
-  // Cierra el menú cada vez que cambia la ruta (o el hash), así no queda
-  // abierto después de navegar a Home o a About.
-  useEffect(() => {
-    closeMenu();
-  }, [location]);
-
-  // Cierra el menú con la tecla Escape.
-  useEffect(() => {
+   useEffect(() => {
     if (!isMenuOpen) {
       return undefined;
     }
@@ -45,7 +37,7 @@ function Header() {
     <header className="header">
       <div className="header__container">
 
-        <Link to="/" className="header__logo">
+        <Link to="/" className="header__logo" onClick={closeMenu}>
           <img
             className="header__logo-icon"
             src={logoIcon}
@@ -67,6 +59,7 @@ function Header() {
             to="/"
             end
             className={getLinkClassName}
+            onClick={closeMenu}
           >
             Home
           </NavLink>
@@ -74,6 +67,7 @@ function Header() {
           <Link
             to="/#about"
             className="header__link"
+            onClick={closeMenu}
           >
             About
           </Link>

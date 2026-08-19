@@ -3,13 +3,13 @@ import { searchCountries, getPopularCountries } from "../utils/CountriesApi";
 import SearchForm from "../components/SearchForm/SearchForm";
 import CountryGrid from "../components/CountryGrid/CountryGrid";
 import Loader from "../components/Loader/Loader";
+import { COUNTRIES_PER_PAGE } from "../utils/config";
 import "./Explore.css";
 
-const COUNTRIES_PER_PAGE = 6;
 
 function Explore() {
   const [countries, setCountries] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
   const [lastQuery, setLastQuery] = useState("");
@@ -17,8 +17,6 @@ function Explore() {
   const [visibleCount, setVisibleCount] = useState(COUNTRIES_PER_PAGE);
 
   useEffect(() => {
-    setIsLoading(true);
-
     getPopularCountries()
       .then((popularCountries) => {
         setCountries(popularCountries);

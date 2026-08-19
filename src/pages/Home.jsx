@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Hero from "../components/Hero/Hero";
 import ceciliaPhoto from "../assets/images/about_photo.jpeg"
 import "./Home.css";
