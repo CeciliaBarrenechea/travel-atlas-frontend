@@ -1,3 +1,7 @@
+.explore__results-anchor {
+  scroll-margin-top: 24px;
+}
+
 .explore__overlay {
   position: fixed;
   inset: 0;
