@@ -7,15 +7,13 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const getLinkClassName = ({ isActive }) =>
-    isActive
-      ? "header__link header__link_active"
-      : "header__link";
+    isActive ? "header__link header__link_active" : "header__link";
 
   const closeMenu = () => setIsMenuOpen(false);
 
   const toggleMenu = () => setIsMenuOpen((isOpen) => !isOpen);
 
-   useEffect(() => {
+  useEffect(() => {
     if (!isMenuOpen) {
       return undefined;
     }
@@ -36,7 +34,6 @@ function Header() {
   return (
     <header className="header">
       <div className="header__container">
-
         <Link to="/" className="header__logo" onClick={closeMenu}>
           <img
             className="header__logo-icon"
@@ -44,31 +41,18 @@ function Header() {
             alt="Travel Atlas logo"
           />
 
-          <span className="header__logo-text">
-            ATlas
-          </span>
+          <span className="header__logo-text">ATlas</span>
         </Link>
 
         <nav
-          className={`header__nav ${
-            isMenuOpen ? "header__nav_open" : ""
-          }`}
+          className={`header__nav ${isMenuOpen ? "header__nav_open" : ""}`}
           aria-label="Main navigation"
         >
-          <NavLink
-            to="/"
-            end
-            className={getLinkClassName}
-            onClick={closeMenu}
-          >
+          <NavLink to="/" end className={getLinkClassName} onClick={closeMenu}>
             Home
           </NavLink>
 
-          <Link
-            to="/#about"
-            className="header__link"
-            onClick={closeMenu}
-          >
+          <Link to="/#about" className="header__link" onClick={closeMenu}>
             About
           </Link>
         </nav>
@@ -76,13 +60,14 @@ function Header() {
         <button
           className="header__menu-button"
           type="button"
-          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={isMenuOpen}
           onClick={toggleMenu}
         >
           {isMenuOpen ? "✕" : "☰"}
         </button>
-
       </div>
     </header>
   );

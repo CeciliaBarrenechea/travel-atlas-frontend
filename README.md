@@ -39,3 +39,5 @@ src/
 ├── styles/         # Estilos globales
 ├── assets/         # Imágenes e íconos
 └── vendor/         # Fuentes tipográficas
+
+pr
