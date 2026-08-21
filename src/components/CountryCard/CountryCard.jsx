@@ -1,13 +1,6 @@
 import "./CountryCard.css";
 
-function CountryCard({
-  name,
-  region,
-  capital,
-  population,
-  image,
-  flag,
-}) {
+function CountryCard({ name, region, capital, population, image, flag }) {
   const handleImageError = (event) => {
     if (event.currentTarget.src !== flag) {
       event.currentTarget.src = flag;
@@ -27,13 +20,9 @@ function CountryCard({
       <div className="country-card__content">
         <div className="country-card__heading">
           <div>
-            <h3 className="country-card__name">
-              {name}
-            </h3>
+            <h3 className="country-card__name">{name}</h3>
 
-            <p className="country-card__region">
-              {region}
-            </p>
+            <p className="country-card__region">{region}</p>
           </div>
 
           {flag && (
@@ -47,15 +36,10 @@ function CountryCard({
         </div>
 
         <p className="country-card__capital">
-          <span className="country-card__label">
-            Capital:
-          </span>{" "}
-          {capital}
+          <span className="country-card__label">Capital:</span> {capital}
         </p>
 
-        <p className="country-card__population">
-          {population} inhabitants
-        </p>
+        <p className="country-card__population">{population} inhabitants</p>
       </div>
     </article>
   );
