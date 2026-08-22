@@ -34,16 +34,9 @@ function SearchForm({ onSearch, isLoading }) {
           languages and other useful information.
         </p>
 
-        <form
-          className="search-form__form"
-          onSubmit={handleSubmit}
-          noValidate
-        >
+        <form className="search-form__form" onSubmit={handleSubmit} noValidate>
           <div className="search-form__card">
-            <label
-              className="search-form__label"
-              htmlFor="country-search"
-            >
+            <label className="search-form__label" htmlFor="country-search">
               Country name
             </label>
 

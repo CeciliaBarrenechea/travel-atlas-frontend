@@ -1,60 +1,33 @@
-import { useEffect, useState } from "react";
-import { searchCountries, getPopularCountries } from "../utils/CountriesApi";
+import { useEffect, useState, useRef } from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import CountryGrid from "../components/CountryGrid/CountryGrid";
 import Loader from "../components/Loader/Loader";
 import { COUNTRIES_PER_PAGE } from "../utils/config";
 import "./Explore.css";
 
-
-function Explore() {
-  const [countries, setCountries] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [hasSearched, setHasSearched] = useState(false);
-  const [lastQuery, setLastQuery] = useState("");
+function Explore({
+  countries,
+  isLoading,
+  error,
+  hasSearched,
+  lastQuery,
+  onSearch,
+}) {
   const [isMessageDismissed, setIsMessageDismissed] = useState(false);
   const [visibleCount, setVisibleCount] = useState(COUNTRIES_PER_PAGE);
-
-  useEffect(() => {
-    getPopularCountries()
-      .then((popularCountries) => {
-        setCountries(popularCountries);
-      })
-      .catch(() => {
-        setError(
-          "Sorry, something went wrong while loading countries."
-        );
-        setIsMessageDismissed(false);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+  const resultsRef = useRef(null);
 
   const handleSearch = (countryName) => {
-    setIsLoading(true);
-    setError("");
-    setCountries([]);
-    setHasSearched(true);
-    setLastQuery(countryName.trim());
     setIsMessageDismissed(false);
     setVisibleCount(COUNTRIES_PER_PAGE);
+    onSearch(countryName);
 
-    searchCountries(countryName)
-      .then((countryResults) => {
-        setCountries(countryResults);
-      })
-      .catch(() => {
-        setCountries([]);
-
-        setError(
-          "Sorry, something went wrong while requesting the data. Please try again later.",
-        );
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    // Lleva la vista hacia los resultados apenas se dispara la búsqueda,
+    // para que no parezca que la app no encontró nada mientras carga.
+    resultsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   const handleLoadMore = () => {
@@ -97,66 +70,68 @@ function Explore() {
     <main className="explore">
       <SearchForm onSearch={handleSearch} isLoading={isLoading} />
 
-      {isLoading && <Loader />}
+      <div ref={resultsRef} className="explore__results-anchor">
+        {isLoading && <Loader />}
 
-      {shouldShowModal && (
-        <div className="explore__overlay" onClick={handleCloseMessage}>
-          <div
-            className={`explore__message ${
-              error
-                ? "explore__message_type_error"
-                : "explore__message_type_empty"
-            }`}
-            role={error ? "alertdialog" : "dialog"}
-            aria-live={error ? "assertive" : "polite"}
-            aria-modal="true"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="explore__message-close"
-              onClick={handleCloseMessage}
-              aria-label="Close"
+        {shouldShowModal && (
+          <div className="explore__overlay" onClick={handleCloseMessage}>
+            <div
+              className={`explore__message ${
+                error
+                  ? "explore__message_type_error"
+                  : "explore__message_type_empty"
+              }`}
+              role={error ? "alertdialog" : "dialog"}
+              aria-live={error ? "assertive" : "polite"}
+              aria-modal="true"
+              onClick={(event) => event.stopPropagation()}
             >
-              ×
-            </button>
+              <button
+                type="button"
+                className="explore__message-close"
+                onClick={handleCloseMessage}
+                aria-label="Close"
+              >
+                ×
+              </button>
 
-            <span className="explore__message-icon" aria-hidden="true">
-              {error ? "⚠️" : "🌍"}
-            </span>
+              <span className="explore__message-icon" aria-hidden="true">
+                {error ? "⚠️" : "🌍"}
+              </span>
 
-            {error ? (
-              <>
-                <h2 className="explore__message-title">
-                  Something went wrong
-                </h2>
+              {error ? (
+                <>
+                  <h2 className="explore__message-title">
+                    Something went wrong
+                  </h2>
 
-                <p className="explore__error">{error}</p>
-              </>
-            ) : (
-              <>
-                <h2 className="explore__message-title">No results found</h2>
+                  <p className="explore__error">{error}</p>
+                </>
+              ) : (
+                <>
+                  <h2 className="explore__message-title">No results found</h2>
 
-                <p className="explore__no-results">
-                  We could not find any countries matching{" "}
-                  <strong>&ldquo;{lastQuery}&rdquo;</strong>. Check the
-                  spelling and try again.
-                </p>
-              </>
-            )}
+                  <p className="explore__no-results">
+                    We could not find any countries matching{" "}
+                    <strong>&ldquo;{lastQuery}&rdquo;</strong>. Check the
+                    spelling and try again.
+                  </p>
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {!isLoading && !error && (
-        <CountryGrid
-          countries={visibleCountries}
-          totalCountries={countries.length}
-          hasMoreCountries={hasMoreCountries}
-          onLoadMore={handleLoadMore}
-          title={hasSearched ? "Search results" : "Popular countries"}
-        />
-      )}
+        {!isLoading && !error && (
+          <CountryGrid
+            countries={visibleCountries}
+            totalCountries={countries.length}
+            hasMoreCountries={hasMoreCountries}
+            onLoadMore={handleLoadMore}
+            title={hasSearched ? "Search results" : "Popular countries"}
+          />
+        )}
+      </div>
     </main>
   );
 }

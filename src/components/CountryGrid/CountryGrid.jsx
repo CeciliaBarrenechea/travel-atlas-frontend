@@ -15,9 +15,7 @@ function CountryGrid({
   return (
     <section className="country-grid" aria-label="Country search results">
       <div className="country-grid__header">
-        <h2 className="country-grid__title">
-  {title}
-</h2>
+        <h2 className="country-grid__title">{title}</h2>
 
         <p className="country-grid__count">
           {totalCountries} {totalCountries === 1 ? "country" : "countries"}{" "}
